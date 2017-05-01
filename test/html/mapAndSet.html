@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+   var family = new Map([['mother',55],['father',56],['me',25]]);
+ 
+  console.info(family.get('me')); //  25
+    
+    family.set('brother',32);
+   console.info(family.has('brother')); //  true
+    family.set('brother',28);
+
+   console.info( family.get('brother')) // 28  old value  was covered!!!
+   family.delete('mother',55); 
+   console.info(family);  //Map(3) {"father" => 56, "me" => 25, "brother" => 32}
+
+ // set key => array  no value
+
+ var s = new Set([1,3,4,5]);
+ console.info(s); // Set(4) {1, 3, 4, 5}
+
+ console.info(s.add(2,6)); // Set(5) {1, 3, 4, 5, 2}
+
+ console.info(s.add(6)) ; //Set(6) {1, 3, 4, 5, 2,6} // add only one!!
+
+ console.info(s.add(2)); // Set(6) {1, 3, 4, 5, 2,6}  repeat was covered!!  keys couldn't repeat
+
+ console.info(s.add('string')); //  Set(6) {1, 3, 4, 5, 2,6,'string'}
+
+  s.delete(1);
+console.info(s); //  Set(6) { 3, 4, 5, 2,6,'string'}
+
+// iterable 迭代
+ var arr = [3,4,5,6,6];
+ // iterable Array
+ for(var x of arr) {
+ 	console.info(x); // 3,4,5,6,6
+ }
+
+ // iterable Set
+for(var x of s) {
+	console.info(x) ; // 3,4,5,2,6,'string'
+} 
+
+// iterable Map
+for(var x of family) {
+	console.log(x); // ['father',56],['me',25],['brother',28]
+   document.write(x[0] + '=' + x[1] + '<br/>'); /* father=56
+    me=25
+    brother=28 */
+
+}
+
+
+	</script>
+</body> 
+</html>

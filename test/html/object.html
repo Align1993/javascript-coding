@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+</head>
+<body>
+    <script>
+    var chenyi = {
+    	name: 'chenyi',
+    	age: 3,
+    	sex: 'boy',
+    	'midlle-school': "none", // the attribute name contains specil characters
+    	go: function(){
+    		alert('chenyi come here!');
+    	}
+    }
+    // chenyi.go(); // chenyi come here!
+    console.log(chenyi['midlle-school']); // none
+
+    // Object is dynamic type language
+
+    chenyi.height = 90; //add attribute height
+
+    delete chenyi.sex;  // delete attribute sex
+    console.log(chenyi); //Object {name: "chenyi", age: 3, midlle-school: "none", height: 90, go: function}
+    // determine whether the attribute  exists
+
+    console.log('name' in chenyi); // ture   " " have to
+
+    // determine attribute  basis or extend
+    // determine attribute  own or inherit
+    
+    console.log(chenyi.hasOwnProperty('name'));// true
+
+
+    // object 对象原型链object
+
+    console.log(chenyi.hasOwnProperty('toString')); //  false
+    
+    console.log(chenyi.toString()); // [object Object]
+     document.write(chenyi.toString()); // [object Object]
+     var newObj = chenyi.toString();
+
+     console.log(typeof newObj); // string
+
+    </script>
+</body>
+</html>

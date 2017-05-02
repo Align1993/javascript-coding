@@ -5,18 +5,28 @@
 	<title>Document</title>
 </head>
 <body>
-	<canvas id="can1" width='750' height="562">
-		
-	</canvas>
+	<div style="width: 750px;height: 562px;margin: 20px auto;position: relative;">
+    <canvas id="can1" width='750' height="562" style="position: absolute;top:0;left:0;">
+      
+   </canvas>
+   <canvas id="can2" style="z-index: 2;position: absolute;top:0;left:0;" width='750' height="562">
+      
+   </canvas>  
+
+   </div>
+  
 	<script>
+
          document.body.onload = draw;
 
          var can1;
-         var ctx1;
+         var can1;
+         var ctx2;
+         var ctx2;
          var lastTime;
          var deltaTime;
          var bgImage = new Image();
-
+         var hk;
          var w;
          var h;
          function draw() {
@@ -31,8 +41,13 @@
          }
 
          function init() {
-         	can1 = document.getElementById('can1');
-         	ctx1 = can1.getContext('2d');
+            can1 = document.getElementById('can1');
+         	can2 = document.getElementById('can2');
+            ctx1 = can1.getContext('2d');
+         	ctx2 = can2.getContext('2d');
+            ctx2.globalAlpha=0.2;
+            hk = new hkObj();
+            hk.init();
          }
 
          function gameLoop() {
@@ -41,11 +56,43 @@
             deltaTime = now - lastTime;
             lastTime = now;
              drawBg();
+             hk.draw();
          }
 
 
          function drawBg() {
            ctx1.drawImage(bgImage,0,0,w,h);
+         }
+
+         // hai kui
+
+         var hkObj = function() {
+            this.x = [];
+            this.h = [];
+         }
+         hkObj.prototype.num = 50;
+         hkObj.prototype.init = function() {
+            for(var i = 0;i < this.num;i++) {
+               this.x[i] = i * 16 + Math.random() * 20;
+               this.h[i] = 200 + Math.random() * 50;
+            }
+            console.log('a');
+         }
+         hkObj.prototype.draw = function() {
+                ctx2.save();
+                ctx2.globalAlpha = 0.06;
+                ctx2.lineWidth = 20;
+                ctx2.lineCap = 'round'
+                ctx2.strokeStyle = '#3b154e';
+            for(var i = 0;i < this.num; i++) {
+                 // beginPath, moveTo, lineTo, strokeStyle, stroke, lineWidth, lineCap ,globalAlpha
+
+                ctx2.beginPath();
+                ctx2.moveTo(this.x[i],  h);
+                ctx2.lineTo(this.x[i], h -  this.h[i]);
+                ctx2.stroke();
+            }
+             ctx2.restore();
          }
 	</script>
 </body>

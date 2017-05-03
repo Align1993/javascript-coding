@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+</head>
+<body>
+    <script>
+         
+    	function a() {
+    		alert('声明的' + y);
+              var y;  
+              y = 5;   
+    	}
+    	a(); // undefined    //变量声明会被提升   变量赋值不会被提升
+
+
+    	function b() {
+    		alert('没定义的' + y);
+
+    	}
+    //	b();  // throw error:  y is not defined
+
+        function abc() {
+            var a = 1,
+                b = 2,
+                c = 3;
+                console.info(a,b,c);
+        }
+        abc(); // 1,2,3
+
+
+        var globalVariable = 'apple';
+        console.log(window.globalVariable); // apple
+ 
+        console.log(count(9,7)); //  16      // 函数声明也会被提升
+        function count(a,b) {
+          return a + b;
+        }
+
+       // console.info(count2(4,8)); //  throw error : count2 is not a function   
+        var count2 = function (c,d) {
+            return c + d;
+        }
+
+        console.info(count2(4,8)); //  12     // 变量赋值不会被提升即使是函数
+
+        // 变量作用域在函数内部
+
+     function foo() {
+        for(var i = 0; i < 4; i++) {
+
+        }
+        console.log(i);
+     }
+      foo();  // 4
+
+
+      function foo1() {
+        for(let i = 0; i < 4; i++) {
+
+        }
+        console.log(i);
+      }
+      foo1(); // undefined
+      // let 声明块级作用域
+   
+         
+     for(var i = 0; i < 6; i ++) {
+
+         setTimeout(function(){
+            console.info(i);  // 6
+         })
+     }
+      
+
+    
+
+      for(let i = 0; i < 6; i ++) {
+
+         setTimeout(function(){
+            console.info(i);  // 0,1,2,3,4,5
+         })
+     }
+      
+
+    
+    </script>
+</body>
+</html>

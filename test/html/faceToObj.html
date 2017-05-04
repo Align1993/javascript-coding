@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>inherit</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+</head>
+<body>
+    <script>
+    // 创建原型继承
+    var student = {
+    	name: 'xiaohong',
+    	sex: 'girl',
+    	run: function() {
+    		console.log(this.name +' are running!');
+    	}
+    }
+
+    student.run(); // xiaohong are running!
+
+    var xiaoming = {
+    	name: 'xiaoming'
+    }
+
+    xiaoming.__proto__ = student;  // xiaoming are running!
+    xiaoming.run();
+
+    // 构造函数
+
+    function gouZao() {
+    	this.name = 'xiaolu';
+    	this.hello = function() {
+    		console.log('hello '+ this.name);
+    	}
+    }
+
+   // gouZao.hello(); //   gouZao.hello is not a function
+
+    // new keywords 
+
+    var xiaolu = new gouZao();
+    xiaolu.hello(); // hello xiaolu
+
+  
+    </script>
+</body>
+</html>

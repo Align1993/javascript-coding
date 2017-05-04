@@ -6,13 +6,16 @@
 </head>
 <body>
 	<div style="width: 750px;height: 562px;margin: 20px auto;position: relative;">
-    <canvas id="can1" width='750' height="562" style="position: absolute;top:0;left:0;">
+    <div style="position: absolute;top:0;left:0;">
+    <canvas id="can1" width='750' height="562" >
       
    </canvas>
-   <canvas id="can2" style="z-index: 2;position: absolute;top:0;left:0;" width='750' height="562">
+   </div>
+   <div style="z-index: 2;position: absolute;top:0;left:0;">
+   <canvas id="can2"  width='750' height="562">
       
    </canvas>  
-
+</div>
    </div>
   
 	<script>
@@ -20,8 +23,8 @@
          document.body.onload = draw;
 
          var can1;
-         var can1;
-         var ctx2;
+         var can2;
+         var ctx1;
          var ctx2;
          var lastTime;
          var deltaTime;
@@ -45,7 +48,6 @@
          	can2 = document.getElementById('can2');
             ctx1 = can1.getContext('2d');
          	ctx2 = can2.getContext('2d');
-            ctx2.globalAlpha=0.2;
             hk = new hkObj();
             hk.init();
          }
@@ -76,13 +78,13 @@
                this.x[i] = i * 16 + Math.random() * 20;
                this.h[i] = 200 + Math.random() * 50;
             }
-            console.log('a');
+     
          }
          hkObj.prototype.draw = function() {
                 ctx2.save();
-                ctx2.globalAlpha = 0.06;
+                ctx2.globalAlpha = 0.6;
                 ctx2.lineWidth = 20;
-                ctx2.lineCap = 'round'
+                ctx2.lineCap = 'round';
                 ctx2.strokeStyle = '#3b154e';
             for(var i = 0;i < this.num; i++) {
                  // beginPath, moveTo, lineTo, strokeStyle, stroke, lineWidth, lineCap ,globalAlpha

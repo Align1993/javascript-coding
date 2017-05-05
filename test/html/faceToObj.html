@@ -11,7 +11,7 @@
 <body>
     <script>
     // 创建原型继承
-    var student = {
+    var Student = {
     	name: 'xiaohong',
     	sex: 'girl',
     	run: function() {
@@ -19,18 +19,59 @@
     	}
     }
 
-    student.run(); // xiaohong are running!
+    Student.run(); // xiaohong are running!
 
     var xiaoming = {
     	name: 'xiaoming'
     }
 
-    xiaoming.__proto__ = student;  // xiaoming are running!
+    xiaoming.__proto__ = Student;  // xiaoming are running!
     xiaoming.run();
 
+    // 基于studet原型新建一个对象
+
+    function createObj(name) {
+        var s = Object.create(Student); // 大概关键字 new 干的事
+        s.name = name;
+        return s;
+    }
+          var me = createObj('liujun');
+          me.run(); //      liujun are running!
+
+          console.log(me.name);// liujun
+          console.log(Student.name); // xiaohong
+
+    // use new      
+         var obj = {};
+         var arr = [];
+         var fn1 = function() {};
+         var obj1 = new Object();
+         var arr2 = new Array();
+         var fn3 = new Function();
+
+         console.log(new Array()); //  []
+         console.log([]); //    []
+
+         console.log(new Object()); //   Object {}
+         console.log({});   //     Object {}
+
+         console.log(new Function());  //  function anonymous() {     anonymous: 匿名
+
+//  }
+         console.log(function() {}); //  function () {}
+
+    function Student1(name) {
+        this.name = name;
+    }
+    Student1.prototype.hello = function() {
+        console.log('hello ' + this.name);
+    }
+    
+       var children = new Student1('chenyi');
+       children.hello();  // hello chenyi
     // 构造函数
 
-    function gouZao() {
+    function GouZao() {
     	this.name = 'xiaolu';
     	this.hello = function() {
     		console.log('hello '+ this.name);
@@ -41,10 +82,21 @@
 
     // new keywords 
 
-    var xiaolu = new gouZao();
-    xiaolu.hello(); // hello xiaolu
+    var xiaolu = new GouZao();
 
-  
+    xiaolu.hello(); // hello xiaolu
+   
+  // create object
+ // foo ----> Function.prototype ----> Object.prototype ----> null
+
+ //  原型继承 new PrimaryStudent() ----> PrimaryStudent.prototype ----> Student.prototype ----> Object.prototype ----> null
+
+     function inherits(Child,Parent) {
+         var fn = function() {};
+         fn.prototype = Parent.prototype;
+         Child.prototype = new fn();
+         Child.prototype.constructor = Child;
+     }
     </script>
 </body>
 </html>

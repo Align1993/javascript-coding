@@ -44,7 +44,57 @@
     var xiaolu = new gouZao();
     xiaolu.hello(); // hello xiaolu
 
-  
+    //   var xiaolan = gouZao;   error
+  //  xiaolan.hello();    //  xiaolan.hello is not a function
+  // Function prototype = > Object  prototype = > null
+
+  var Teacher = function(name) {
+  	    this.name = name;
+  	    this.hello = function() {
+  	    	console.log(this.name + " 老师好！");
+  	    }
+
+  	   this.hello();
+  }
+
+  Teacher('liujun');  // liujun 老师好
+
+
+     var chenyi = new Teacher('chenyi');   // chenyi 老师好   
+   //  chenyi();    //   chenyi is not a function
+     
+
+     var chener = Teacher;      //  赋值改变了this的指向
+
+     chener('chneyi2');   // chenyi2 老师好
+ 
+
+  var Teacher2 = function(name) {
+  	    this.name = name;
+  	    this.hello = function() {
+  	    	console.log(this.name + " 老师好！");
+  	    }
+  }
+
+  var chenyi3 = new Teacher2('chenyi3');   // must new
+       chenyi3.hello();
+
+     var Teacher4 = {
+     	name: 'zhangsan',
+     	age: 18,
+     	run: function (){
+     		console.info(this.name + " can run!");
+     	}
+     }
+       var createObj = function(name) {
+       	  
+       	      var  s = Object.create(Teacher4);   
+       	       s.name = name;
+       	       return s;
+       }
+      var xiaoli = createObj("xiaoli");
+      xiaoli.run();   //  xiaoli can run!
+      console.log(xiaoli.name);  //   xiaoli can run!
     </script>
 </body>
 </html>
